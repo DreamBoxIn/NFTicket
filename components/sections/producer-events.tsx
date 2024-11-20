@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin } from "lucide-react"
-import { EventDetailsModal } from "@/components/modals/event-details-modal"
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, MapPin } from "lucide-react";
+import { EventDetailsModal } from "@/components/modals/event-details-modal";
 
 interface ProducerEventsProps {
-  producer: string
+  producer: string;
 }
 
 const producerEvents = {
@@ -116,15 +116,8 @@ const producerEvents = {
 }
 
 export function ProducerEvents({ producer }: ProducerEventsProps) {
-  const events = producerEvents[producer as keyof typeof producerEvents];
-
-  if (!events || events.length === 0) {
-    return (
-      <section className="py-8">
-        <h2 className="text-2xl font-bold mb-8">No events found for this producer</h2>
-      </section>
-    );
-  }
+  const [selectedEvent, setSelectedEvent] = useState<typeof producerEvents["livenation"][0] | null>(null); // Añadido aquí
+  const events = producerEvents[producer as keyof typeof producerEvents] || [];
 
   return (
     <>
@@ -135,7 +128,7 @@ export function ProducerEvents({ producer }: ProducerEventsProps) {
             <Card
               key={event.id}
               className="group cursor-pointer transition-all hover:scale-[1.02]"
-              onClick={() => setSelectedEvent(event)}
+              onClick={() => setSelectedEvent(event)} // Aquí ahora está definido
             >
               <CardContent className="p-0">
                 <div className="relative aspect-[16/9]">
