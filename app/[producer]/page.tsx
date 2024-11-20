@@ -21,3 +21,10 @@ export default function ProducerPage({ params }: ProducerPageProps) {
     </main>
   );
 }
+
+export async function generateStaticParams() {
+  const producers = ["livenation", "nba-events", "moma"]; // Ajusta según tus datos
+  return producers.map((producer) => ({
+    producer,
+  }));
+}

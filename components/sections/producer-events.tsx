@@ -46,80 +46,10 @@ const producerEvents = {
       ],
     },
   ],
-  "nba-events": [
-    {
-      id: 2,
-      title: "NBA Finals 2024",
-      category: "Sports",
-      date: "June 15, 2024",
-      location: "Madison Square Garden, NY",
-      description:
-        "Experience the intensity of NBA Finals with premium seating and exclusive fan experiences.",
-      image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a",
-      tickets: [
-        {
-          type: "Courtside",
-          price: 2999,
-          supply: 50,
-          remaining: 12,
-          benefits: ["Courtside seats", "Player meet & greet", "Limited edition NFT", "VIP entrance", "Exclusive merchandise"],
-        },
-        {
-          type: "Premium",
-          price: 999,
-          supply: 200,
-          remaining: 89,
-          benefits: ["Lower level seats", "Special NFT collectible", "Premium lounge access", "Fast-track entry"],
-        },
-        {
-          type: "Standard",
-          price: 299,
-          supply: 1000,
-          remaining: 456,
-          benefits: ["Upper level seats", "Basic NFT ticket", "Standard entry"],
-        },
-      ],
-    },
-  ],
-  moma: [
-    {
-      id: 3,
-      title: "Modern Art Exhibition",
-      category: "Arts",
-      date: "August 10-20, 2024",
-      location: "MoMA, New York",
-      description:
-        "A curated exhibition featuring contemporary artists and interactive installations.",
-      image: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5",
-      tickets: [
-        {
-          type: "Collector",
-          price: 799,
-          supply: 75,
-          remaining: 34,
-          benefits: ["Private viewing", "Artist reception", "Limited NFT artwork", "Exhibition catalog", "Year membership"],
-        },
-        {
-          type: "Preview",
-          price: 299,
-          supply: 300,
-          remaining: 167,
-          benefits: ["Early access", "Curator talk", "Special NFT badge", "Exhibition catalog"],
-        },
-        {
-          type: "General",
-          price: 99,
-          supply: 1500,
-          remaining: 892,
-          benefits: ["General admission", "Basic NFT ticket", "Digital guide"],
-        },
-      ],
-    },
-  ],
-};
+}
 
 export function ProducerEvents({ producer }: ProducerEventsProps) {
-  const [selectedEvent, setSelectedEvent] = useState<(typeof producerEvents)["livenation"][0] | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<typeof producerEvents["livenation"][0] | null>(null);
   const events = producerEvents[producer as keyof typeof producerEvents] || [];
 
   return (
