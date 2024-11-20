@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Calendar, MapPin, Users, Ticket } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PurchaseModal } from "./purchase-modal"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Users, Ticket } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PurchaseModal } from "./purchase-modal";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Progress } from "@/components/ui/progress";
+import Image from "next/image";
 
 interface EventDetailsModalProps {
   event: {
@@ -17,25 +18,25 @@ interface EventDetailsModalProps {
     location: string;
     description: string;
     image: string;
-    tickets: { 
-      type: string; 
-      price: number; 
-      supply: number; 
-      remaining: number; 
-      benefits: string[]; 
-    }[]; // Corregido aquí
+    tickets: {
+      type: string;
+      price: number;
+      supply: number;
+      remaining: number;
+      benefits: string[];
+    }[];
   };
   onClose: () => void;
 }
 
 export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
-  const [selectedTicket, setSelectedTicket] = useState<null | typeof event.tickets[0]>(null)
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [selectedTicket, setSelectedTicket] = useState<null | typeof event.tickets[0]>(null);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
 
   const handleTicketSelect = (ticket: typeof event.tickets[0]) => {
-    setSelectedTicket(ticket)
-    setShowPurchaseModal(true)
-  }
+    setSelectedTicket(ticket);
+    setShowPurchaseModal(true);
+  };
 
   return (
     <>
@@ -47,13 +48,15 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
           <ScrollArea className="h-[calc(90vh-8rem)]">
             <div className="space-y-6">
               <div className="relative aspect-video rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={event.image}
                   alt={event.title}
-                  className="object-cover w-full h-full"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
                 />
               </div>
-              
+
               <div className="grid grid-cols-3 gap-4">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-muted-foreground" />
@@ -78,8 +81,8 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
                 <h3 className="text-lg font-semibold mb-4">Available Tickets</h3>
                 <div className="grid md:grid-cols-3 gap-4">
                   {event.tickets.map((ticket) => (
-                    <Card 
-                      key={ticket.type} 
+                    <Card
+                      key={ticket.type}
                       className="relative overflow-hidden cursor-pointer transition-all hover:scale-[1.02]"
                       onClick={() => handleTicketSelect(ticket)}
                     >
@@ -96,14 +99,11 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
                               <span>{ticket.remaining} left</span>
                               <span>{ticket.remaining}/{ticket.supply}</span>
                             </div>
-                            <Progress 
-                              value={(ticket.remaining / ticket.supply) * 100} 
-                              className="h-2"
-                            />
+                            <Progress value={(ticket.remaining / ticket.supply) * 100} className="h-2" />
                           </div>
                           <ul className="space-y-2">
-                            {ticket.benefits.map((benefit) => (
-                              <li key={benefit} className="flex items-center gap-2 text-sm">
+                            {ticket.benefits.map((benefit, index) => (
+                              <li key={index} className="flex items-center gap-2 text-sm">
                                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                                 {benefit}
                               </li>
@@ -125,11 +125,11 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
           ticket={selectedTicket}
           event={event}
           onClose={() => {
-            setShowPurchaseModal(false)
-            setSelectedTicket(null)
+            setShowPurchaseModal(false);
+            setSelectedTicket(null);
           }}
         />
       )}
     </>
-  )
+  );
 }
