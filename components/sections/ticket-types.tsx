@@ -9,7 +9,9 @@ import { PurchaseModal } from "@/components/modals/purchase-modal"
 const tickets = [
   {
     type: "Super VIP",
-    price: "2.5 ETH",
+    price: 999,
+    supply: 100,
+    remaining: 45,
     icon: Crown,
     benefits: [
       "Front row access",
@@ -21,7 +23,9 @@ const tickets = [
   },
   {
     type: "VIP",
-    price: "1.2 ETH",
+    price: 499,
+    supply: 500,
+    remaining: 123,
     icon: Star,
     benefits: [
       "Premium viewing area",
@@ -32,7 +36,9 @@ const tickets = [
   },
   {
     type: "General",
-    price: "0.5 ETH",
+    price: 199,
+    supply: 2000,
+    remaining: 876,
     icon: Ticket,
     benefits: [
       "General admission",
@@ -62,7 +68,7 @@ export function TicketTypes() {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle>{ticket.type}</CardTitle>
-                    <CardDescription>Starting from {ticket.price}</CardDescription>
+                    <CardDescription>${ticket.price} USDC</CardDescription>
                   </div>
                   <Icon className="h-6 w-6" />
                 </div>
