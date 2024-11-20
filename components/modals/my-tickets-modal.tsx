@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card, CardContent } from "@/components/ui/card"
-import { QrCode } from "lucide-react"
-import { NFTPreview } from "@/components/nft-preview"
-import { useTranslationsContext } from "@/providers/translations-provider"
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent } from "@/components/ui/card";
+import { QrCode } from "lucide-react";
+import { NFTPreview } from "@/components/nft-preview";
+import { useTranslationsContext } from "@/providers/translations-provider";
+import Image from "next/image";
 
 const myTickets = [
   {
@@ -17,12 +18,7 @@ const myTickets = [
     location: "Central Park, NY",
     description: "Experience an unforgettable night of music, art, and culture with VIP access.",
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
-    benefits: [
-      "Premium viewing areas",
-      "VIP lounge access",
-      "Special NFT badge",
-      "Priority entry and parking"
-    ]
+    benefits: ["Premium viewing areas", "VIP lounge access", "Special NFT badge", "Priority entry and parking"],
   },
   {
     id: 2,
@@ -32,23 +28,18 @@ const myTickets = [
     location: "Madison Square Garden",
     description: "Witness basketball history from the best seats in the house.",
     image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a",
-    benefits: [
-      "Courtside seats",
-      "Player meet & greet",
-      "Exclusive NFT collection",
-      "VIP entrance"
-    ]
-  }
-]
+    benefits: ["Courtside seats", "Player meet & greet", "Exclusive NFT collection", "VIP entrance"],
+  },
+];
 
 interface MyTicketsModalProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 export function MyTicketsModal({ open, onClose }: MyTicketsModalProps) {
-  const [selectedTicket, setSelectedTicket] = useState<typeof myTickets[0] | null>(null)
-  const { t } = useTranslationsContext()
+  const [selectedTicket, setSelectedTicket] = useState<typeof myTickets[0] | null>(null);
+  const { t } = useTranslationsContext();
 
   return (
     <>
@@ -67,10 +58,11 @@ export function MyTicketsModal({ open, onClose }: MyTicketsModalProps) {
                 >
                   <CardContent className="p-4">
                     <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
-                      <img
+                      <Image
                         src={ticket.image}
                         alt={ticket.event}
-                        className="object-cover w-full h-full"
+                        fill
+                        className="object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                         <QrCode className="text-white h-8 w-8" />
@@ -106,5 +98,5 @@ export function MyTicketsModal({ open, onClose }: MyTicketsModalProps) {
         />
       )}
     </>
-  )
+  );
 }

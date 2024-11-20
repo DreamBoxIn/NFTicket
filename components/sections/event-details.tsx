@@ -1,5 +1,6 @@
-import { MapPin, Calendar, Users, Music2, Clock, Ticket } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MapPin, Calendar, Users, Music2, Clock, Ticket } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 const details = [
   {
@@ -32,7 +33,7 @@ const details = [
     title: "NFT Collection",
     description: "Limited Edition Tickets",
   },
-]
+];
 
 export function EventDetails() {
   return (
@@ -45,7 +46,7 @@ export function EventDetails() {
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {details.map((detail) => {
-          const Icon = detail.icon
+          const Icon = detail.icon;
           return (
             <Card key={detail.title}>
               <CardHeader>
@@ -58,9 +59,20 @@ export function EventDetails() {
                 <p className="text-muted-foreground">{detail.description}</p>
               </CardContent>
             </Card>
-          )
+          );
         })}
       </div>
+      {/* Aquí se optimiza la imagen usando Image de next/image */}
+      <div className="mt-8 text-center">
+        <Image
+          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
+          alt="Event cover"
+          width={800}
+          height={450}
+          className="rounded-lg"
+          priority={true} // Opcional: Prioriza la carga
+        />
+      </div>
     </section>
-  )
+  );
 }

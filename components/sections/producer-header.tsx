@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Users, Star } from "lucide-react";
+import Image from "next/image";
 
 interface ProducerHeaderProps {
   producer: string;
@@ -14,7 +15,7 @@ const producerData = {
     name: "LiveNation",
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     description:
-      "The world's leading live entertainment company, connecting millions of fans to thousands of events.",
+      "The world&apos;s leading live entertainment company, connecting millions of fans to thousands of events.",
     stats: {
       events: 45,
       totalSales: "2.5K ETH",
@@ -36,7 +37,7 @@ const producerData = {
     name: "MoMA",
     image: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5",
     description:
-      "The Museum of Modern Art's exclusive events and exhibitions, featuring contemporary art and culture.",
+      "The Museum of Modern Art&apos;s exclusive events and exhibitions, featuring contemporary art and culture.",
     stats: {
       events: 28,
       totalSales: "890 ETH",
@@ -53,7 +54,7 @@ export function ProducerHeader({ producer }: ProducerHeaderProps) {
       <div className="p-6">
         <h1 className="text-3xl font-bold">Producer not found</h1>
         <p className="text-muted-foreground">
-          Please check the producer's name and try again.
+          Please check the producer&apos;s name and try again.
         </p>
       </div>
     );
@@ -64,9 +65,11 @@ export function ProducerHeader({ producer }: ProducerHeaderProps) {
       <Card>
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row gap-6">
-            <img
+            <Image
               src={data.image}
               alt={data.name}
+              width={128}
+              height={128}
               className="w-32 h-32 rounded-lg object-cover"
             />
             <div className="space-y-4 flex-1">

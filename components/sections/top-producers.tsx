@@ -1,6 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 const producers = [
   {
@@ -31,7 +32,7 @@ const producers = [
     totalSales: "750 ETH",
     verified: true,
   },
-]
+];
 
 export function TopProducers() {
   return (
@@ -45,9 +46,11 @@ export function TopProducers() {
           <Card key={producer.name}>
             <CardContent className="p-6">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src={producer.image}
                   alt={producer.name}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div className="space-y-1">
@@ -70,5 +73,5 @@ export function TopProducers() {
         ))}
       </div>
     </section>
-  )
+  );
 }

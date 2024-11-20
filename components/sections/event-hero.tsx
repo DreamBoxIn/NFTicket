@@ -1,25 +1,30 @@
-import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, Users } from "lucide-react"
+import { Badge } from "@/components/ui/badge";
+import { Calendar, MapPin, Users } from "lucide-react";
+import Image from "next/image";
 
 export function EventHero() {
   return (
     <section className="pt-24 pb-12">
       <div className="relative rounded-lg overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
           alt="Event cover"
+          width={1920}
+          height={1080}
           className="w-full h-[60vh] object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent">
           <div className="absolute bottom-0 left-0 p-8 space-y-4">
             <div className="space-y-2">
-              <Badge variant="secondary" className="text-sm">Live Music</Badge>
+              <Badge variant="secondary" className="text-sm">
+                Live Music
+              </Badge>
               <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl">
                 Summer Music Festival 2024
               </h1>
             </div>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              Experience an unforgettable night of music, art, and culture. Your ticket is not just an entry pass - it's a unique NFT collectible.
+              Experience an unforgettable night of music, art, and culture. Your ticket is not just an entry pass - it&apos;s a unique NFT collectible.
             </p>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -39,5 +44,5 @@ export function EventHero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
