@@ -1,6 +1,6 @@
-import ProducerHeader from "@/components/sections/producer-header";
-import ProducerEvents from "@/components/sections/producer-events";
-import Navigation from "@/components/navigation";
+import { ProducerHeader } from "@/components/sections/producer-header";
+import { ProducerEvents } from "@/components/sections/producer-events";
+import { Navigation } from "@/components/navigation";
 
 type ProducerPageProps = {
   params: {
