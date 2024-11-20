@@ -43,7 +43,16 @@ const producerData = {
 }
 
 export function ProducerHeader({ producer }: ProducerHeaderProps) {
-  const data = producerData[producer as keyof typeof producerData] || producerData.livenation
+  const data = producerData[producer as keyof typeof producerData];
+
+  if (!data) {
+    return (
+      <div className="p-6">
+        <h1 className="text-3xl font-bold">Producer not found</h1>
+        <p className="text-muted-foreground">Please check the producer's name and try again.</p>
+      </div>
+    );
+  }
 
   return (
     <section className="pt-24">
@@ -60,9 +69,7 @@ export function ProducerHeader({ producer }: ProducerHeaderProps) {
                 <h1 className="text-3xl font-bold">{data.name}</h1>
                 <Badge variant="secondary">Verified Producer</Badge>
               </div>
-              <p className="text-muted-foreground max-w-2xl">
-                {data.description}
-              </p>
+              <p className="text-muted-foreground max-w-2xl">{data.description}</p>
               <div className="flex gap-6">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -85,5 +92,5 @@ export function ProducerHeader({ producer }: ProducerHeaderProps) {
         </CardContent>
       </Card>
     </section>
-  )
+  );
 }

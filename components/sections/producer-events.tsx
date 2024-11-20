@@ -116,8 +116,15 @@ const producerEvents = {
 }
 
 export function ProducerEvents({ producer }: ProducerEventsProps) {
-  const [selectedEvent, setSelectedEvent] = useState<typeof producerEvents["livenation"][0] | null>(null)
-  const events = producerEvents[producer as keyof typeof producerEvents] || []
+  const events = producerEvents[producer as keyof typeof producerEvents];
+
+  if (!events || events.length === 0) {
+    return (
+      <section className="py-8">
+        <h2 className="text-2xl font-bold mb-8">No events found for this producer</h2>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -125,7 +132,7 @@ export function ProducerEvents({ producer }: ProducerEventsProps) {
         <h2 className="text-2xl font-bold mb-8">Upcoming Events</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event) => (
-            <Card 
+            <Card
               key={event.id}
               className="group cursor-pointer transition-all hover:scale-[1.02]"
               onClick={() => setSelectedEvent(event)}
@@ -171,5 +178,5 @@ export function ProducerEvents({ producer }: ProducerEventsProps) {
         />
       )}
     </>
-  )
+  );
 }
