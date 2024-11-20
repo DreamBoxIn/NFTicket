@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin } from "lucide-react";
 import { EventDetailsModal } from "@/components/modals/event-details-modal";
-import Image from "next/image";
 
 interface ProducerEventsProps {
   producer: string;
@@ -22,15 +21,35 @@ const producerEvents = {
       description:
         "The biggest electronic music festival featuring world-class DJs and immersive experiences.",
       image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3",
+      tickets: [
+        {
+          type: "Super VIP",
+          price: 999,
+          supply: 100,
+          remaining: 45,
+          benefits: ["Backstage access", "Artist meet & greet", "Exclusive NFT artwork", "VIP lounge", "Priority entry"],
+        },
+        {
+          type: "VIP",
+          price: 499,
+          supply: 500,
+          remaining: 123,
+          benefits: ["VIP viewing areas", "VIP lounge access", "Special NFT badge", "Fast-track entry"],
+        },
+        {
+          type: "General",
+          price: 199,
+          supply: 2000,
+          remaining: 876,
+          benefits: ["General admission", "Basic NFT ticket", "Standard entry"],
+        },
+      ],
     },
   ],
 };
 
 export function ProducerEvents({ producer }: ProducerEventsProps) {
-  const [selectedEvent, setSelectedEvent] = useState<
-    typeof producerEvents["livenation"][0] | null
-  >(null);
-
+  const [selectedEvent, setSelectedEvent] = useState<typeof producerEvents["livenation"][0] | null>(null);
   const events = producerEvents[producer as keyof typeof producerEvents] || [];
 
   return (
@@ -46,17 +65,13 @@ export function ProducerEvents({ producer }: ProducerEventsProps) {
             >
               <CardContent className="p-0">
                 <div className="relative aspect-[16/9]">
-                  <Image
+                  <img
                     src={event.image}
                     alt={event.title}
-                    layout="fill"
-                    className="rounded-t-lg object-cover"
+                    className="rounded-t-lg object-cover w-full h-full"
                   />
                   <div className="absolute top-4 left-4">
-                    <Badge
-                      variant="secondary"
-                      className="bg-background/50 backdrop-blur-sm"
-                    >
+                    <Badge variant="secondary" className="bg-background/50 backdrop-blur-sm">
                       {event.category}
                     </Badge>
                   </div>
@@ -84,7 +99,7 @@ export function ProducerEvents({ producer }: ProducerEventsProps) {
 
       {selectedEvent && (
         <EventDetailsModal
-          event={selectedEvent}
+          event={selectedEvent} // Ahora incluye `tickets`
           onClose={() => setSelectedEvent(null)}
         />
       )}

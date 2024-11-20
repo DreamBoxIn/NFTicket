@@ -12,20 +12,20 @@ import { Progress } from "@/components/ui/progress"
 
 interface EventDetailsModalProps {
   event: {
-    title: string
-    date: string
-    location: string
-    description: string
-    image: string
-    tickets: Array<{
-      type: string
-      price: number
-      supply: number
-      remaining: number
-      benefits: string[]
-    }>
-  }
-  onClose: () => void
+    title: string;
+    date: string;
+    location: string;
+    description: string;
+    image: string;
+    tickets: { 
+      type: string; 
+      price: number; 
+      supply: number; 
+      remaining: number; 
+      benefits: string[]; 
+    }[]; // Corregido aquí
+  };
+  onClose: () => void;
 }
 
 export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
